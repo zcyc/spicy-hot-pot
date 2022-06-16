@@ -1,6 +1,6 @@
 import Head from 'next/head'
 
-export default function NewFoods() {
+export default function Foods() {
     return (<div className="container">
         <Head>
             <title>新配料模式</title>

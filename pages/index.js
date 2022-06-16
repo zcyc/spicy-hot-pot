@@ -5,6 +5,7 @@ export default function Home() {
         <Head>
             <title>你好，麻辣烫</title>
             <link rel="icon" href="/favicon.ico"/>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.min.css"/>
         </Head>
 
         <main>
@@ -13,37 +14,38 @@ export default function Home() {
             </h1>
 
             <p className="description">
-                四种模式，获取美味配料表
+                两种模式，随心所欲
             </p>
 
             <div className="grid">
                 <a href="/random" className="card">
-                    <h3>随机搭配模式 &rarr;</h3>
-                    <p>自动生成一份荤素搭配附带主食的配料采购表</p>
+                    <h3>随机搭配 &rarr;</h3>
+                    <p>自动生成一份荤素搭配带有主食的配料表</p>
                 </a>
 
                 <a href="/choose" className="card">
-                    <h3>自己搭配模式 &rarr;</h3>
-                    <p>选择你喜欢的食材并生成一份配料采购表</p>
+                    <h3>自己搭配 &rarr;</h3>
+                    <p>选择你喜欢的主食和配菜并生成一份配料表</p>
                 </a>
 
                 <a
-                    href="/blacklist"
+                    href="/foods"
                     className="card"
                 >
-                    <h3>黑名单模式 &rarr;</h3>
-                    <p>排除一些不喜欢的配料再进行随机搭配</p>
-                </a>
-
-                <a
-                    href="/new-foods"
-                    className="card"
-                >
-                    <h3>新配料模式 &rarr;</h3>
+                    <h3>配料管理 &rarr;</h3>
                     <p>
-                        添加一些我们没有的配料再进行随机搭配
+                        向配料表中添加新的配料，或者将配料加入黑名单
                     </p>
                 </a>
+
+                <a
+                    href="/do"
+                    className="card"
+                >
+                    <h3>开始烹饪 &rarr;</h3>
+                    <p>根据提示，按照配料的耐煮程度，分批下入配料</p>
+                </a>
+
             </div>
         </main>
 
@@ -149,8 +151,8 @@ export default function Home() {
 
           .card {
             margin: 1rem;
-            flex-basis: 45%;
-            padding: 1.5rem;
+            flex-basis: 40%;
+            padding: 1rem;
             text-align: left;
             color: inherit;
             text-decoration: none;
@@ -186,21 +188,6 @@ export default function Home() {
               width: 100%;
               flex-direction: column;
             }
-          }
-        ` }</style>
-
-        <style jsx global>{ `
-          html,
-          body {
-            padding: 0;
-            margin: 0;
-            font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-            sans-serif;
-          }
-
-          * {
-            box-sizing: border-box;
           }
         ` }</style>
     </div>)
