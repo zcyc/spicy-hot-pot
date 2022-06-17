@@ -45,7 +45,7 @@ const Foods: NextPage = () => {
             <p>向配料表中添加新配料，或者将配料加入黑名单</p>
 
             <div>
-                <button>添加配料</button>
+                <button style={ { fontSize: "xx-large" } }>添加配料</button>
             </div>
 
             <table>
