@@ -8,7 +8,6 @@ const Home: NextPage = () => {
         <Head>
             <title>你好，麻辣烫</title>
             <link rel="icon" href="/favicon.ico"/>
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.min.css"/>
         </Head>
 
         <main className={ styles.main }>

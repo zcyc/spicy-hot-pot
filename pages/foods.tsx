@@ -1,17 +1,17 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import foods from "../public/data/foods.json";
-import { useEffect } from "react";
+import foods from '../public/data/foods.json'
+import { useEffect } from 'react'
 
 const Foods: NextPage = () => {
     // 从 localStorage 获取黑名单和用户菜品
     let blackList: any[] = []
     let userFoods: any[] = []
     useEffect(() => {
-        let blackListStr = localStorage.getItem("blackList")
+        let blackListStr = localStorage.getItem('blackList')
         if (blackListStr !== null) {
-            blackList = JSON.parse(JSON.stringify(blackListStr) || "[]")
+            blackList = JSON.parse(JSON.stringify(blackListStr) || '[]')
         }
         let userListStr = localStorage.getItem("userFoods")
         if (userListStr !== null) {
@@ -37,7 +37,6 @@ const Foods: NextPage = () => {
         <Head>
             <title>配料管理</title>
             <link rel="icon" href="/favicon.ico"/>
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.min.css"/>
         </Head>
 
         <main className={ styles.main }>

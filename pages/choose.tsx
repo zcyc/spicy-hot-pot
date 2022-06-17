@@ -7,7 +7,6 @@ const Choose: NextPage = () => {
         <Head>
             <title>自己搭配</title>
             <link rel="icon" href="/favicon.ico"/>
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.min.css"/>
         </Head>
 
         <main className={ styles.main }>

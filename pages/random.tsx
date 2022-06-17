@@ -1,16 +1,16 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import { useEffect } from "react";
-import foods from "../public/data/foods.json";
+import { useEffect } from 'react'
+import foods from '../public/data/foods.json'
 
 const Random: NextPage = () => {
     // 从 localStorage 获取黑名单和用户菜品
     let blackList: any[] = []
     let userFoods: any[] = []
     useEffect(() => {
-        blackList = JSON.parse(localStorage.getItem("blackList") || "[]")
-        userFoods = JSON.parse(localStorage.getItem("userFoods") || "[]")
+        blackList = JSON.parse(localStorage.getItem('blackList') || '[]')
+        userFoods = JSON.parse(localStorage.getItem('userFoods') || '[]')
     }, [])
 
     // 过滤黑名单
@@ -44,7 +44,6 @@ const Random: NextPage = () => {
         <Head>
             <title>随机搭配</title>
             <link rel="icon" href="/favicon.ico"/>
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.min.css"/>
         </Head>
 
         <main className={ styles.main }>
