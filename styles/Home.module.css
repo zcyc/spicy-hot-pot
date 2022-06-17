@@ -113,7 +113,3 @@
 .details summary:active {
     text-decoration: none;
 }
-.row{
-    display: flex;
-    align-items: center;
-}

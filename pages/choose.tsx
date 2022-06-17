@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import Food from "../interfaces/food";
 
 const Choose: NextPage = () => {
+    const [showFoodTagListFlag, setShowFoodTagListFlag] = useState<boolean>(false)
     // 黑名单食物列表
     const [forbiddenFoodList, setForbiddenFoodList] = useState<Food[]>([])
     useEffect(() => {
@@ -60,30 +61,31 @@ const Choose: NextPage = () => {
             </h1>
 
             <p>选择你喜欢的主食和配菜并生成一份配料表</p>
-
+            <label>
+                <input
+                    type="checkbox"
+                    checked={ showFoodTagListFlag }
+                    onChange={ () => setShowFoodTagListFlag(!showFoodTagListFlag) }
+                />
+                显示食物标签
+            </label>
             <details className={ styles.details }>
                 <summary className={ styles.summary }>荤菜</summary>
                 <ul>
                     { meatFoods.map((food, index) => (
                         <li key={ index }>
                             <label>
-                                <div className={ styles.row }>
-                                    <input
-                                        type="checkbox"
-                                        checked={ chooseFoodList.includes(food.name) }
-                                        onChange={ () => handleFoodChoose(food.name) }
-                                    />
-                                    { food.name }
-                                    <ul>
-                                        { food.tagList.map((tag, index) => (
-                                            <li key={ index } style={ { display: "inline-block" } }>
-                                                <label>
-                                                    # { tag }&nbsp;&nbsp;
-                                                </label>
-                                            </li>
-                                        )) }
-                                    </ul>
-                                </div>
+                                <input
+                                    type="checkbox"
+                                    checked={ chooseFoodList.includes(food.name) }
+                                    onChange={ () => handleFoodChoose(food.name) }
+                                />
+                                { food.name }
+                                { showFoodTagListFlag && <ul>
+                                    { food.tagList.map(tag => (
+                                        <li key={ tag }>{ tag }</li>
+                                    )) }
+                                </ul> }
                             </label>
                         </li>
                     )) }
@@ -95,23 +97,17 @@ const Choose: NextPage = () => {
                     { vegetableFoods.map((food, index) => (
                         <li key={ index }>
                             <label>
-                                <div className={ styles.row }>
-                                    <input
-                                        type="checkbox"
-                                        checked={ chooseFoodList.includes(food.name) }
-                                        onChange={ () => handleFoodChoose(food.name) }
-                                    />
-                                    { food.name }
-                                    <ul>
-                                        { food.tagList.map((tag, index) => (
-                                            <li key={ index } style={ { display: "inline-block" } }>
-                                                <label>
-                                                    # { tag }&nbsp;&nbsp;
-                                                </label>
-                                            </li>
-                                        )) }
-                                    </ul>
-                                </div>
+                                <input
+                                    type="checkbox"
+                                    checked={ chooseFoodList.includes(food.name) }
+                                    onChange={ () => handleFoodChoose(food.name) }
+                                />
+                                { food.name }
+                                { showFoodTagListFlag && <ul>
+                                    { food.tagList.map(tag => (
+                                        <li key={ tag }>{ tag }</li>
+                                    )) }
+                                </ul> }
                             </label>
                         </li>
                     )) }
@@ -123,23 +119,17 @@ const Choose: NextPage = () => {
                     { algaeFoods.map((food, index) => (
                         <li key={ index }>
                             <label>
-                                <div className={ styles.row }>
-                                    <input
-                                        type="checkbox"
-                                        checked={ chooseFoodList.includes(food.name) }
-                                        onChange={ () => handleFoodChoose(food.name) }
-                                    />
-                                    { food.name }
-                                    <ul>
-                                        { food.tagList.map((tag, index) => (
-                                            <li key={ index } style={ { display: "inline-block" } }>
-                                                <label>
-                                                    # { tag }&nbsp;&nbsp;
-                                                </label>
-                                            </li>
-                                        )) }
-                                    </ul>
-                                </div>
+                                <input
+                                    type="checkbox"
+                                    checked={ chooseFoodList.includes(food.name) }
+                                    onChange={ () => handleFoodChoose(food.name) }
+                                />
+                                { food.name }
+                                { showFoodTagListFlag && <ul>
+                                    { food.tagList.map(tag => (
+                                        <li key={ tag }>{ tag }</li>
+                                    )) }
+                                </ul> }
                             </label>
                         </li>
                     )) }
@@ -151,23 +141,17 @@ const Choose: NextPage = () => {
                     { stapleFoods.map((food, index) => (
                         <li key={ index }>
                             <label>
-                                <div className={ styles.row }>
-                                    <input
-                                        type="checkbox"
-                                        checked={ chooseFoodList.includes(food.name) }
-                                        onChange={ () => handleFoodChoose(food.name) }
-                                    />
-                                    { food.name }
-                                    <ul>
-                                        { food.tagList.map((tag, index) => (
-                                            <li key={ index } style={ { display: "inline-block" } }>
-                                                <label>
-                                                    # { tag }&nbsp;&nbsp;
-                                                </label>
-                                            </li>
-                                        )) }
-                                    </ul>
-                                </div>
+                                <input
+                                    type="checkbox"
+                                    checked={ chooseFoodList.includes(food.name) }
+                                    onChange={ () => handleFoodChoose(food.name) }
+                                />
+                                { food.name }
+                                { showFoodTagListFlag && <ul>
+                                    { food.tagList.map(tag => (
+                                        <li key={ tag }>{ tag }</li>
+                                    )) }
+                                </ul> }
                             </label>
                         </li>
                     )) }
