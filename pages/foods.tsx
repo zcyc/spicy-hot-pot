@@ -30,6 +30,13 @@ const Foods: NextPage = () => {
         localStorage.setItem('forbiddenFoodListStr', JSON.stringify(newForbiddenFoodList))
     }
 
+    // 从黑名单删除食物
+    const removeForbiddenFood = (food: Food) => {
+        const newForbiddenFoodList = forbiddenFoodList.filter(forbiddenFood => forbiddenFood.name !== food.name);
+        setForbiddenFoodList(newForbiddenFoodList)
+        localStorage.setItem('forbiddenFoodListStr', JSON.stringify(newForbiddenFoodList))
+    }
+
     return (<div className={ styles.container }>
         <Head>
             <title>配料管理</title>
@@ -48,6 +55,7 @@ const Foods: NextPage = () => {
                 <button style={ { fontSize: "xx-large" } }>添加配料</button>
             </div>
 
+            <h1>我吃的配料</h1>
             <table>
                 <thead>
                 <tr>
@@ -70,17 +78,44 @@ const Foods: NextPage = () => {
                             <button
                                 onClick={ () => addForbiddenFood(food) }
                             >
-                                拉黑
+                                我不吃
                             </button>
                         </td>
                     </tr>
                 ) }
                 </tbody>
             </table>
-            <div>
 
+            <h1>我不吃的配料</h1>
+            <table>
+                <thead>
+                <tr>
+                    <th>名称</th>
+                    <th>分类</th>
+                    <th>耐熟</th>
+                    <th>标签</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
 
-            </div>
+                { forbiddenFoodList.map((food, index) =>
+                    <tr key={ index }>
+                        <td>{ food.name }</td>
+                        <td>{ food.category }</td>
+                        <td>{ food.needTime }</td>
+                        <td> { food.tagList.map(tag => <li key={ tag }>{ tag }</li>) }</td>
+                        <td>
+                            <button
+                                onClick={ () => removeForbiddenFood(food) }
+                            >
+                                我要吃
+                            </button>
+                        </td>
+                    </tr>
+                ) }
+                </tbody>
+            </table>
         </main>
 
         <footer className={ styles.footer }>
