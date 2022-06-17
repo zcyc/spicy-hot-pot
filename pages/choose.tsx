@@ -61,7 +61,7 @@ const Choose: NextPage = () => {
 
             <p>选择你喜欢的主食和配菜并生成一份配料表</p>
 
-            <details open>
+            <details open className={styles.details}>
                 <summary>荤菜</summary>
                 <ul>
                     { meatFoods.map((food, index) => (
@@ -78,7 +78,7 @@ const Choose: NextPage = () => {
                     )) }
                 </ul>
             </details>
-            <details open>
+            <details open className={styles.details}>
                 <summary>素菜</summary>
                 <ul>
                     { vegetableFoods.map((food, index) => (
@@ -95,7 +95,7 @@ const Choose: NextPage = () => {
                     )) }
                 </ul>
             </details>
-            <details open>
+            <details open className={styles.details}>
                 <summary>菌藻</summary>
                 <ul>
                     { algaeFoods.map((food, index) => (
@@ -112,7 +112,7 @@ const Choose: NextPage = () => {
                     )) }
                 </ul>
             </details>
-            <details open>
+            <details open className={styles.details}>
                 <summary>主食</summary>
                 <ul>
                     { stapleFoods.map((food, index) => (
