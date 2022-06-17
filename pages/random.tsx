@@ -55,12 +55,10 @@ const Random: NextPage = () => {
                 随机搭配
             </h1>
 
-            <p className={ styles.description }>
-                自动生成一份荤素搭配带有主食的配料表
-            </p>
+            <p>自动生成一份荤素搭配带有主食的配料表</p>
 
             <div>
-                <button>生成配料</button>
+                <button style={ { fontSize: "xx-large" } }>生成配料表</button>
             </div>
         </main>
 
