@@ -1,9 +1,10 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import Link from 'next/link'
 import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
-    return (<div className={ styles.container }>
+    return <div className={ styles.container }>
         <Head>
             <title>你好，麻辣烫</title>
             <link rel="icon" href="/favicon.ico"/>
@@ -20,34 +21,38 @@ const Home: NextPage = () => {
             </p>
 
             <div className={ styles.grid }>
-                <a href="/random" className={ styles.card }>
-                    <h2>随机搭配 &rarr;</h2>
-                    <p>自动生成一份荤素搭配带有主食的配料表</p>
-                </a>
-
-                <a href="/choose" className={ styles.card }>
-                    <h2>自己搭配 &rarr;</h2>
-                    <p>选择你喜欢的主食和配菜并生成一份配料表</p>
-                </a>
-
-                <a
-                    href="/foods"
-                    className={ styles.card }
-                >
-                    <h2>配料管理 &rarr;</h2>
-                    <p>
-                        向配料表中添加新的配料，或者将配料加入黑名单
-                    </p>
-                </a>
-
-                <a
-                    href="/do"
-                    className={ styles.card }
-                >
-                    <h2>开始烹饪 &rarr;</h2>
-                    <p>根据提示，按照配料的耐熟程度，分批下入配料</p>
-                </a>
-
+                <div className={ styles.card }>
+                    <Link href="/random">
+                        <a>
+                            <h2>随机搭配 &rarr;</h2>
+                            <p>自动生成一份荤素搭配带有主食的配料表</p>
+                        </a>
+                    </Link>
+                </div>
+                <div className={ styles.card }>
+                    <Link href="/choose">
+                        <a>
+                            <h2>自己搭配 &rarr;</h2>
+                            <p>选择你喜欢的主食和配菜并生成一份配料表</p>
+                        </a>
+                    </Link>
+                </div>
+                <div className={ styles.card }>
+                    <Link href="/foods">
+                        <a>
+                            <h2>配料管理 &rarr;</h2>
+                            <p>向配料表中添加新的配料，或者将配料加入黑名单</p>
+                        </a>
+                    </Link>
+                </div>
+                <div className={ styles.card }>
+                    <Link href="/do">
+                        <a>
+                            <h2>开始烹饪 &rarr;</h2>
+                            <p>根据提示，按照配料的耐熟程度，分批下入配料</p>
+                        </a>
+                    </Link>
+                </div>
             </div>
         </main>
 
@@ -61,7 +66,7 @@ const Home: NextPage = () => {
                 <img src="/vercel.svg" alt="Vercel" className={ styles.logo }/>
             </a>
         </footer>
-    </div>)
+    </div>
 }
 
 export default Home
