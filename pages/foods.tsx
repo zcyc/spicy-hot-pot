@@ -25,10 +25,9 @@ const Foods: NextPage = () => {
 
     // 添加食物到黑名单
     const addForbiddenFood = (food: Food) => {
-        console.log('before forbiddenFood', forbiddenFoodList)
-        setForbiddenFoodList([...forbiddenFoodList, food])
-        console.log('after forbiddenFood', forbiddenFoodList)
-        localStorage.setItem('forbiddenFoodListStr', JSON.stringify(forbiddenFoodList))
+        const newForbiddenFoodList = [...forbiddenFoodList, food]
+        setForbiddenFoodList(newForbiddenFoodList)
+        localStorage.setItem('forbiddenFoodListStr', JSON.stringify(newForbiddenFoodList))
     }
 
     return (<div className={ styles.container }>
