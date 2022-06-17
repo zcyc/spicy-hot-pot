@@ -2,29 +2,20 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import foods from "../public/data/foods.json";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 const Foods: NextPage = () => {
-    const Food = {
-        name: String,
-        tagList: [],
-        needTime: BigInt,
-        category: String
-
-    }
-
     // 从 localStorage 获取黑名单和用户菜品
-    const [blackList, setBlackList] = useState([]);
-    const [userFoods, setUserFoods] = useState([]);
-
+    let blackList: any[] = []
+    let userFoods: any[] = []
     useEffect(() => {
-        let blackListStr = (JSON.stringify(localStorage.getItem("blackList")))
+        let blackListStr = localStorage.getItem("blackList")
         if (blackListStr !== null) {
-            setBlackList(JSON.parse(blackListStr))
+            blackList = JSON.parse(JSON.stringify(blackListStr) || "[]")
         }
-        let userListStr = (JSON.stringify(localStorage.getItem("userFoods")))
+        let userListStr = localStorage.getItem("userFoods")
         if (userListStr !== null) {
-            setUserFoods(JSON.parse(userListStr))
+            userFoods = JSON.parse(JSON.stringify(userListStr) || "[]")
         }
     }, [])
 
@@ -71,7 +62,7 @@ const Foods: NextPage = () => {
                 <tbody>
 
                 { canUseFoods.map((food, index) => <tr key={ index }>
-                    <td>{ food.name + index }</td>
+                    <td>{ food.name }</td>
                     <td>{ food.category }</td>
                     <td>{ food.needTime }</td>
                     <td> { food.tagList.map(tag => <li key={ tag }>{ tag }</li>) }</td>
