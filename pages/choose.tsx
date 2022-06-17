@@ -174,7 +174,7 @@ const Choose: NextPage = () => {
                 </ul>
             </details>
 
-            <button>生成配料表</button>
+            <button style={ { fontSize: "xx-large" } }>生成配料表</button>
         </main>
 
         <footer className={ styles.footer }>
