@@ -98,3 +98,18 @@
         flex-direction: column;
     }
 }
+
+.details {
+    width: 100%;
+}
+
+.details summary {
+    text-align: center;
+    font-size: x-large;
+}
+
+.details summary:hover,
+.details summary:focus,
+.details summary:active {
+    text-decoration: none;
+}
