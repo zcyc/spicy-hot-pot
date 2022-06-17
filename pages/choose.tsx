@@ -62,68 +62,112 @@ const Choose: NextPage = () => {
             <p>选择你喜欢的主食和配菜并生成一份配料表</p>
 
             <details className={ styles.details }>
-                <summary>荤菜</summary>
+                <summary className={ styles.summary }>荤菜</summary>
                 <ul>
                     { meatFoods.map((food, index) => (
                         <li key={ index }>
                             <label>
-                                <input
-                                    type="checkbox"
-                                    checked={ chooseFoodList.includes(food.name) }
-                                    onChange={ () => handleFoodChoose(food.name) }
-                                />
-                                { food.name }
+                                <div className={ styles.row }>
+                                    <input
+                                        type="checkbox"
+                                        checked={ chooseFoodList.includes(food.name) }
+                                        onChange={ () => handleFoodChoose(food.name) }
+                                    />
+                                    { food.name }
+                                    <ul>
+                                        { food.tagList.map((tag, index) => (
+                                            <li key={ index } style={ { display: "inline-block" } }>
+                                                <label>
+                                                    # { tag }&nbsp;&nbsp;
+                                                </label>
+                                            </li>
+                                        )) }
+                                    </ul>
+                                </div>
                             </label>
                         </li>
                     )) }
                 </ul>
             </details>
             <details className={ styles.details }>
-                <summary>素菜</summary>
+                <summary className={ styles.summary }>素菜</summary>
                 <ul>
                     { vegetableFoods.map((food, index) => (
                         <li key={ index }>
                             <label>
-                                <input
-                                    type="checkbox"
-                                    checked={ chooseFoodList.includes(food.name) }
-                                    onChange={ () => handleFoodChoose(food.name) }
-                                />
-                                { food.name }
+                                <div className={ styles.row }>
+                                    <input
+                                        type="checkbox"
+                                        checked={ chooseFoodList.includes(food.name) }
+                                        onChange={ () => handleFoodChoose(food.name) }
+                                    />
+                                    { food.name }
+                                    <ul>
+                                        { food.tagList.map((tag, index) => (
+                                            <li key={ index } style={ { display: "inline-block" } }>
+                                                <label>
+                                                    # { tag }&nbsp;&nbsp;
+                                                </label>
+                                            </li>
+                                        )) }
+                                    </ul>
+                                </div>
                             </label>
                         </li>
                     )) }
                 </ul>
             </details>
             <details className={ styles.details }>
-                <summary>菌藻</summary>
+                <summary className={ styles.summary }>菌藻</summary>
                 <ul>
                     { algaeFoods.map((food, index) => (
                         <li key={ index }>
                             <label>
-                                <input
-                                    type="checkbox"
-                                    checked={ chooseFoodList.includes(food.name) }
-                                    onChange={ () => handleFoodChoose(food.name) }
-                                />
-                                { food.name }
+                                <div className={ styles.row }>
+                                    <input
+                                        type="checkbox"
+                                        checked={ chooseFoodList.includes(food.name) }
+                                        onChange={ () => handleFoodChoose(food.name) }
+                                    />
+                                    { food.name }
+                                    <ul>
+                                        { food.tagList.map((tag, index) => (
+                                            <li key={ index } style={ { display: "inline-block" } }>
+                                                <label>
+                                                    # { tag }&nbsp;&nbsp;
+                                                </label>
+                                            </li>
+                                        )) }
+                                    </ul>
+                                </div>
                             </label>
                         </li>
                     )) }
                 </ul>
             </details>
             <details className={ styles.details }>
-                <summary>主食</summary>
+                <summary className={ styles.summary }>主食</summary>
                 <ul>
                     { stapleFoods.map((food, index) => (
                         <li key={ index }>
                             <label>
-                                <input
-                                    type="checkbox"
-                                    checked={ chooseFoodList.includes(food.name) }
-                                    onChange={ () => handleFoodChoose(food.name) }
-                                />
-                                { food.name }
+                                <div className={ styles.row }>
+                                    <input
+                                        type="checkbox"
+                                        checked={ chooseFoodList.includes(food.name) }
+                                        onChange={ () => handleFoodChoose(food.name) }
+                                    />
+                                    { food.name }
+                                    <ul>
+                                        { food.tagList.map((tag, index) => (
+                                            <li key={ index } style={ { display: "inline-block" } }>
+                                                <label>
+                                                    # { tag }&nbsp;&nbsp;
+                                                </label>
+                                            </li>
+                                        )) }
+                                    </ul>
+                                </div>
                             </label>
                         </li>
                     )) }

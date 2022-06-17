@@ -103,7 +103,7 @@
     width: 100%;
 }
 
-.details summary {
+.details .summary {
     text-align: center;
     font-size: x-large;
 }
@@ -112,4 +112,8 @@
 .details summary:focus,
 .details summary:active {
     text-decoration: none;
+}
+.row{
+    display: flex;
+    align-items: center;
 }
