@@ -1,43 +1,47 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import foods from '../public/data/foods.json'
+import Food from "../interfaces/food";
 
 const Random: NextPage = () => {
-    // 从 localStorage 获取黑名单和用户菜品
-    let blackList: any[] = []
-    let userFoods: any[] = []
+    // 黑名单食物列表
+    const [forbiddenFoodList, setForbiddenFoodList] = useState<Food[]>([])
     useEffect(() => {
-        blackList = JSON.parse(localStorage.getItem('blackList') || '[]')
-        userFoods = JSON.parse(localStorage.getItem('userFoods') || '[]')
+        const forbiddenFoodList = JSON.parse(localStorage.getItem('forbiddenFoodListStr') || '[]') as Food[]
+        setForbiddenFoodList(forbiddenFoodList)
     }, [])
 
-    // 过滤黑名单
-    console.log("黑名单食物", blackList)
-    let canUseFoods = foods.filter(item => blackList.every(food => item.name !== food.name))
-    console.log("默认食物", foods)
-    console.log("过滤后食物", canUseFoods)
+    // 可以使用的食物列表
+    const [availableFoodList, setAvailableFoodList] = useState<Food[]>([])
+    useEffect(() => {
+        console.log('默认食物', foods)
+        console.log('黑名单食物', forbiddenFoodList)
+        const availableFoodList = foods.filter(food => !forbiddenFoodList.some(forbiddenFood => forbiddenFood.name === food.name))
+        console.log('过滤后食物', availableFoodList)
+        setAvailableFoodList(availableFoodList)
+    }, [forbiddenFoodList])
 
     // 加入自定义食材
-    console.log("用户食物", userFoods)
-    canUseFoods.push.apply(canUseFoods, userFoods);
-    console.log("合并后食物", canUseFoods)
+    // console.log("用户食物", userFoods)
+    // availableFoodList.push.apply(availableFoodList, userFoods);
+    // console.log("合并后食物", canUseFoods)
 
     // 荤菜
-    let meatFoods = canUseFoods.filter(item => item.category === "荤菜")
+    let meatFoods = availableFoodList.filter(item => item.category === "荤菜")
     console.log("荤菜", meatFoods)
 
     // 素菜
-    let vegetableFoods = canUseFoods.filter(item => item.category === "素菜")
+    let vegetableFoods = availableFoodList.filter(item => item.category === "素菜")
     console.log("素菜", vegetableFoods)
 
     // 菌藻
-    let algaeFoods = canUseFoods.filter(item => item.category === "菌藻")
+    let algaeFoods = availableFoodList.filter(item => item.category === "菌藻")
     console.log("菌藻", algaeFoods)
 
     // 主食
-    let stapleFoods = canUseFoods.filter(item => item.category === "主食")
+    let stapleFoods = availableFoodList.filter(item => item.category === "主食")
     console.log("主食", stapleFoods)
 
     return (<div className={ styles.container }>
