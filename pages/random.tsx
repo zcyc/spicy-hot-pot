@@ -1,14 +1,16 @@
+import type { NextPage } from 'next'
 import Head from 'next/head'
+import styles from '../styles/Home.module.css'
 import { useEffect } from "react";
 import foods from "../public/data/foods.json";
 
-export default function Random() {
+const Random: NextPage = () => {
     // 从 localStorage 获取黑名单和用户菜品
-    let blackList = []
-    let userFoods = []
+    let blackList: any[] = []
+    let userFoods: any[] = []
     useEffect(() => {
-        blackList = JSON.parse(localStorage.getItem('blackList'))
-        userFoods = JSON.parse(localStorage.getItem('userFoods'))
+        blackList = JSON.parse(localStorage.getItem("blackList") || "[]")
+        userFoods = JSON.parse(localStorage.getItem("userFoods") || "[]")
     }, [])
 
     // 过滤黑名单
@@ -38,26 +40,31 @@ export default function Random() {
     let stapleFoods = canUseFoods.filter(item => item.category === "主食")
     console.log("主食", stapleFoods)
 
-    return (<div className="container">
+    return (<div className={ styles.container }>
         <Head>
             <title>随机搭配</title>
             <link rel="icon" href="/favicon.ico"/>
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.min.css"/>
         </Head>
-        <main>
-            <h1 className="title">
+
+        <main className={ styles.main }>
+            <h1 className={ styles.title }>
                 随机搭配
             </h1>
+
+            <p className={ styles.description }>
+                自动生成一份荤素搭配带有主食的配料表
+            </p>
+
             <div>
                 <button>生成配料</button>
             </div>
-            {/*<ul>*/ }
-            {/*    { meatFoods.map(food => (<li key={ food.name }>*/ }
-            {/*        { food.name }*/ }
-            {/*    </li>)) }*/ }
-            {/*</ul>*/ }
         </main>
-        <footer>
+
+        <footer className={ styles.footer }>
+
         </footer>
     </div>)
 }
+
+export default Random
