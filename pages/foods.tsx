@@ -58,25 +58,26 @@ const Foods: NextPage = () => {
             <h1>我吃的配料</h1>
             <table>
                 <thead>
-                <tr>
-                    <th>名称</th>
-                    <th>分类</th>
-                    <th>耐熟</th>
-                    <th>标签</th>
-                    <th>操作</th>
+                <tr style={ { width: "100%" } }>
+                    <th style={ { width: '20%' } }>名称</th>
+                    <th style={ { width: '15%' } }>分类</th>
+                    <th style={ { width: '15%' } }>耐熟</th>
+                    <th style={ { width: '30%' } }>标签</th>
+                    <th style={ { width: '20%' } }>操作</th>
                 </tr>
                 </thead>
                 <tbody>
 
                 { availableFoodList.map((food, index) =>
-                    <tr key={ index }>
-                        <td>{ food.name }</td>
-                        <td>{ food.category }</td>
-                        <td>{ food.needTime }</td>
-                        <td> { food.tagList.map(tag => <div key={ tag }>{ tag }</div>) }</td>
-                        <td>
+                    <tr key={ index } style={ { width: "100%" } }>
+                        <td style={ { width: '20%' } }>{ food.name }</td>
+                        <td style={ { width: '15%' } }>{ food.category }</td>
+                        <td style={ { width: '15%' } }>{ food.needTime }</td>
+                        <td style={ { width: '30%' } }> { food.tagList.map(tag => <div key={ tag }>{ tag }</div>) }</td>
+                        <td style={ { width: '20%' } }>
                             <button
                                 onClick={ () => addForbiddenFood(food) }
+                                style={ { width: "100%", padding: "0.8rem", } }
                             >
                                 不吃
                             </button>
