@@ -6,7 +6,9 @@ import { useEffect, useState } from "react";
 import Food from "../interfaces/food";
 
 const Choose: NextPage = () => {
+    // 是否展示师傅标签
     const [showFoodTagListFlag, setShowFoodTagListFlag] = useState<boolean>(false)
+
     // 黑名单食物列表
     const [forbiddenFoodList, setForbiddenFoodList] = useState<Food[]>([])
     useEffect(() => {
