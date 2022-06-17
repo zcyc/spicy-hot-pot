@@ -2,41 +2,42 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import foods from '../public/data/foods.json'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import Food from '../interfaces/food'
 
 const Foods: NextPage = () => {
-    // 从 localStorage 获取黑名单和用户菜品
-    let blackList: any[] = []
-    let userFoods: any[] = []
+    // 黑名单食物列表
+    const [forbiddenFoodList, setForbiddenFoodList] = useState<Food[]>([])
     useEffect(() => {
-        let blackListStr = localStorage.getItem('blackList')
-        if (blackListStr !== null) {
-            blackList = JSON.parse(JSON.stringify(blackListStr) || '[]')
-        }
-        let userListStr = localStorage.getItem("userFoods")
-        if (userListStr !== null) {
-            userFoods = JSON.parse(JSON.stringify(userListStr) || "[]")
-        }
+        const forbiddenFoodList = JSON.parse(localStorage.getItem('forbiddenFoodListStr') || '[]') as Food[]
+        setForbiddenFoodList(forbiddenFoodList)
     }, [])
 
-    // 过滤黑名单
-    console.log("黑名单食物", blackList)
-    let canUseFoods = foods.filter(item => blackList.every(food => item.name !== food.name))
-    console.log("默认食物", foods)
-    console.log("过滤后食物", canUseFoods)
+    // 可以使用的食物列表
+    const [availableFoodList, setAvailableFoodList] = useState<Food[]>([])
+    useEffect(() => {
+        console.log('默认食物', foods)
+        console.log('黑名单食物', forbiddenFoodList)
+        const availableFoodList = foods.filter(food => !forbiddenFoodList.some(forbiddenFood => forbiddenFood.name === food.name))
+        console.log('过滤后食物', availableFoodList)
+        setAvailableFoodList(availableFoodList)
+    }, [forbiddenFoodList])
 
-    function blackIt(food: any) {
-        console.log("before blackIt", blackList)
-        blackList.push(food)
-        console.log("after blackIt", blackList)
-        localStorage.setItem("blackList", blackList.toString())
-
+    // 添加食物到黑名单
+    const addForbiddenFood = (food: Food) => {
+        console.log('before forbiddenFood', forbiddenFoodList)
+        setForbiddenFoodList([...forbiddenFoodList, food])
+        console.log('after forbiddenFood', forbiddenFoodList)
+        localStorage.setItem('forbiddenFoodListStr', JSON.stringify(forbiddenFoodList))
     }
 
     return (<div className={ styles.container }>
         <Head>
             <title>配料管理</title>
-            <link rel="icon" href="/favicon.ico"/>
+            <link
+                rel="icon"
+                href="/favicon.ico"
+            />
         </Head>
 
         <main className={ styles.main }>
@@ -60,15 +61,21 @@ const Foods: NextPage = () => {
                 </thead>
                 <tbody>
 
-                { canUseFoods.map((food, index) => <tr key={ index }>
-                    <td>{ food.name }</td>
-                    <td>{ food.category }</td>
-                    <td>{ food.needTime }</td>
-                    <td> { food.tagList.map(tag => <li key={ tag }>{ tag }</li>) }</td>
-                    <td>
-                        <button onClick={ () => blackIt(food) }>拉黑</button>
-                    </td>
-                </tr>) }
+                { availableFoodList.map((food, index) =>
+                    <tr key={ index }>
+                        <td>{ food.name }</td>
+                        <td>{ food.category }</td>
+                        <td>{ food.needTime }</td>
+                        <td> { food.tagList.map(tag => <li key={ tag }>{ tag }</li>) }</td>
+                        <td>
+                            <button
+                                onClick={ () => addForbiddenFood(food) }
+                            >
+                                拉黑
+                            </button>
+                        </td>
+                    </tr>
+                ) }
                 </tbody>
             </table>
             <div>
