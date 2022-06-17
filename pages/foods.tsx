@@ -73,12 +73,12 @@ const Foods: NextPage = () => {
                         <td>{ food.name }</td>
                         <td>{ food.category }</td>
                         <td>{ food.needTime }</td>
-                        <td> { food.tagList.map(tag => <li key={ tag }>{ tag }</li>) }</td>
+                        <td> { food.tagList.map(tag => <div key={ tag }>{ tag }</div>) }</td>
                         <td>
                             <button
                                 onClick={ () => addForbiddenFood(food) }
                             >
-                                我不吃
+                                不吃
                             </button>
                         </td>
                     </tr>
@@ -104,12 +104,12 @@ const Foods: NextPage = () => {
                         <td>{ food.name }</td>
                         <td>{ food.category }</td>
                         <td>{ food.needTime }</td>
-                        <td> { food.tagList.map(tag => <li key={ tag }>{ tag }</li>) }</td>
+                        <td> { food.tagList.map(tag => <div key={ tag }>{ tag }</div>) }</td>
                         <td>
                             <button
                                 onClick={ () => removeForbiddenFood(food) }
                             >
-                                我要吃
+                                要吃
                             </button>
                         </td>
                     </tr>
