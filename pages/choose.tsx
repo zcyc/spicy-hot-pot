@@ -72,7 +72,7 @@ const Choose: NextPage = () => {
                 显示食物标签
             </label>
             <details className={ styles.details }>
-                <summary className={ styles.summary }>荤菜</summary>
+                <summary className={ styles.summary }>荤菜（包含肉、肉制品等）</summary>
                 <ul>
                     { meatFoods.map((food, index) => (
                         <li key={ index }>
@@ -94,7 +94,7 @@ const Choose: NextPage = () => {
                 </ul>
             </details>
             <details className={ styles.details }>
-                <summary className={ styles.summary }>素菜</summary>
+                <summary className={ styles.summary }>素菜（包含蔬菜、豆制品等）</summary>
                 <ul>
                     { vegetableFoods.map((food, index) => (
                         <li key={ index }>
@@ -116,7 +116,7 @@ const Choose: NextPage = () => {
                 </ul>
             </details>
             <details className={ styles.details }>
-                <summary className={ styles.summary }>菌藻</summary>
+                <summary className={ styles.summary }>菌藻（包含菌菇、藻等）</summary>
                 <ul>
                     { algaeFoods.map((food, index) => (
                         <li key={ index }>
@@ -138,7 +138,7 @@ const Choose: NextPage = () => {
                 </ul>
             </details>
             <details className={ styles.details }>
-                <summary className={ styles.summary }>主食</summary>
+                <summary className={ styles.summary }>主食（包含米面、高淀粉蔬菜等）</summary>
                 <ul>
                     { stapleFoods.map((food, index) => (
                         <li key={ index }>
