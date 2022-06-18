@@ -5,7 +5,7 @@ import styles from '../styles/Home.module.css'
 const Do: NextPage = () => {
     return (<div className={ styles.container }>
         <Head>
-            <title>开始做菜</title>
+            <title>麻辣烫配料清单生成器</title>
             <link rel="icon" href="/favicon.ico"/>
         </Head>
 
@@ -21,7 +21,17 @@ const Do: NextPage = () => {
         </main>
 
         <footer className={ styles.footer }>
-
+            <p>Created by
+                <a
+                    href="https://github.com/zcyc"
+                    target="_blank" rel="noreferrer"
+                > @Charles </a>
+                &
+                <a
+                    href="https://github.com/jerryshell"
+                    target="_blank" rel="noreferrer"
+                > @Jerry </a>
+            </p>
         </footer>
     </div>)
 }

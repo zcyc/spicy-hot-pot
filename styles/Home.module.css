@@ -21,10 +21,7 @@
 }
 
 .footer a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-grow: 1;
+    text-decoration: none;
 }
 
 .title {
@@ -70,15 +67,17 @@
     border-color: #0070f3;
 }
 
-.card a:hover,
-.card a:focus,
-.card a:active {
+.card a,
+.card a,
+.card a {
     text-decoration: none;
+    color: inherit;
 }
 
 .card h2 {
     margin: 0 0 1rem 0;
     font-size: 1.5rem;
+    color: inherit;
 }
 
 .card p {
@@ -92,13 +91,6 @@
     margin-left: 0.5rem;
 }
 
-@media (max-width: 600px) {
-    .grid {
-        width: 100%;
-        flex-direction: column;
-    }
-}
-
 .details {
     width: 100%;
 }
@@ -108,8 +100,16 @@
     font-size: x-large;
 }
 
-.details summary:hover,
-.details summary:focus,
-.details summary:active {
+.details summary,
+.details summary,
+.details summary {
     text-decoration: none;
 }
+
+@media (max-width: 600px) {
+    .grid {
+        width: 100%;
+        flex-direction: column;
+    }
+}
+
