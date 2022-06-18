@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import Food from "../interfaces/food";
 
 const Choose: NextPage = () => {
-    // 是否展示师傅标签
+    // 是否展示食物标签
     const [showFoodTagListFlag, setShowFoodTagListFlag] = useState<boolean>(false)
 
     // 黑名单食物列表
@@ -160,7 +160,10 @@ const Choose: NextPage = () => {
                 </ul>
             </details>
 
-            <button style={ { fontSize: "xx-large" } }>生成配料表</button>
+            <div>
+                <p style={ { textAlign: "center" } }>已选择 { chooseFoodList.length } 种配料</p>
+                <button style={ { fontSize: "xx-large" } }>生成配料表</button>
+            </div>
         </main>
 
         <footer className={ styles.footer }>
