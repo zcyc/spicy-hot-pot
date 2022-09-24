@@ -4,43 +4,45 @@ import styles from '../styles/Home.module.css'
 import foods from "../public/data/foods.json";
 import { useEffect, useState } from "react";
 import Food from "../interfaces/food";
-import { router } from "next/client";
+import { useRouter } from "next/router";
 
 const Choose: NextPage = () => {
-    // 是否展示食物标签
+    const router = useRouter();
+
+    // 是否展示配料标签
     const [showFoodTagListFlag, setShowFoodTagListFlag] = useState<boolean>(false)
 
-    // 黑名单食物列表
+    // 黑名单配料列表
     const [forbiddenFoodList, setForbiddenFoodList] = useState<Food[]>([])
     useEffect(() => {
         const forbiddenFoodList = JSON.parse(localStorage.getItem('forbiddenFoodListStr') || '[]') as Food[]
         setForbiddenFoodList(forbiddenFoodList)
     }, [])
 
-    // 可以使用的食物列表
+    // 可以使用的配料
     const [availableFoodList, setAvailableFoodList] = useState<Food[]>([])
     useEffect(() => {
-        console.log('默认食物', foods)
-        console.log('黑名单食物', forbiddenFoodList)
+        console.log('默认配料', foods)
+        console.log('黑名单配料', forbiddenFoodList)
         const availableFoodList = foods.filter(food => !forbiddenFoodList.some(forbiddenFood => forbiddenFood.name === food.name))
-        console.log('过滤后食物', availableFoodList)
+        console.log('过滤后配料', availableFoodList)
         setAvailableFoodList(availableFoodList)
     }, [forbiddenFoodList])
 
-    const [chooseFoodList, setChooseFoodList] = useState<Food[]>([])
-
+    // 要保存的配料
+    const [foodList, setFoodList] = useState<Food[]>([])
     const handleFoodChoose = (food: Food) => {
-        if (chooseFoodList.includes(food)) {
-            setChooseFoodList(chooseFoodList.filter(chooseFood => chooseFood !== food))
+        if (foodList.includes(food)) {
+            setFoodList(foodList.filter(chooseFood => chooseFood !== food))
         } else {
-            setChooseFoodList([...chooseFoodList, food])
+            setFoodList([...foodList, food])
         }
     }
 
-    // 保存食物清单
+    // 保存配料清单
     let saveFoodList = function () {
-        localStorage.setItem("foodList", JSON.stringify(chooseFoodList))
-        console.log('选择的食物', chooseFoodList)
+        localStorage.setItem("foodList", JSON.stringify(foodList))
+        console.log('保存的配料', foodList)
         alert("已保存")
         router.push("/cook")
     }
@@ -79,7 +81,7 @@ const Choose: NextPage = () => {
                     checked={ showFoodTagListFlag }
                     onChange={ () => setShowFoodTagListFlag(!showFoodTagListFlag) }
                 />
-                显示食物标签
+                显示配料标签
             </label>
             <details className={ styles.details }>
                 <summary className={ styles.summary }>荤菜（包含肉、肉制品等）</summary>
@@ -89,7 +91,7 @@ const Choose: NextPage = () => {
                             <label>
                                 <input
                                     type="checkbox"
-                                    checked={ chooseFoodList.includes(food) }
+                                    checked={ foodList.includes(food) }
                                     onChange={ () => handleFoodChoose(food) }
                                 />
                                 { food.name }
@@ -111,7 +113,7 @@ const Choose: NextPage = () => {
                             <label>
                                 <input
                                     type="checkbox"
-                                    checked={ chooseFoodList.includes(food) }
+                                    checked={ foodList.includes(food) }
                                     onChange={ () => handleFoodChoose(food) }
                                 />
                                 { food.name }
@@ -133,7 +135,7 @@ const Choose: NextPage = () => {
                             <label>
                                 <input
                                     type="checkbox"
-                                    checked={ chooseFoodList.includes(food) }
+                                    checked={ foodList.includes(food) }
                                     onChange={ () => handleFoodChoose(food) }
                                 />
                                 { food.name }
@@ -155,7 +157,7 @@ const Choose: NextPage = () => {
                             <label>
                                 <input
                                     type="checkbox"
-                                    checked={ chooseFoodList.includes(food) }
+                                    checked={ foodList.includes(food) }
                                     onChange={ () => handleFoodChoose(food) }
                                 />
                                 { food.name }
@@ -171,7 +173,7 @@ const Choose: NextPage = () => {
             </details>
 
             <div>
-                <p style={ { textAlign: "center" } }>已选择 { chooseFoodList.length } 种配料</p>
+                <p style={ { textAlign: "center" } }>已选择 { foodList.length } 种配料</p>
                 <button style={ { fontSize: "xx-large" } } onClick={ saveFoodList }>保存配料表</button>
             </div>
         </main>
