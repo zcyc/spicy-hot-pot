@@ -9,20 +9,20 @@ import { router } from "next/client";
 const Random: NextPage = () => {
     const [showFoodTagListFlag, setShowFoodTagListFlag] = useState<boolean>(false)
 
-    // 黑名单食物列表
+    // 黑名单配料
     const [forbiddenFoodList, setForbiddenFoodList] = useState<Food[]>([])
     useEffect(() => {
         const forbiddenFoodList = JSON.parse(localStorage.getItem('forbiddenFoodListStr') || '[]') as Food[]
         setForbiddenFoodList(forbiddenFoodList)
     }, [])
 
-    // 可以使用的食物列表
+    // 可以使用的配料
     const [availableFoodList, setAvailableFoodList] = useState<Food[]>([])
     useEffect(() => {
-        console.log('默认食物', foods)
-        console.log('黑名单食物', forbiddenFoodList)
+        console.log('默认配料', foods)
+        console.log('黑名单配料', forbiddenFoodList)
         const availableFoodList = foods.filter(food => !forbiddenFoodList.some(forbiddenFood => forbiddenFood.name === food.name))
-        console.log('过滤后食物', availableFoodList)
+        console.log('过滤后配料', availableFoodList)
         setAvailableFoodList(availableFoodList)
     }, [forbiddenFoodList])
 
@@ -50,7 +50,7 @@ const Random: NextPage = () => {
         setStapleFoodsCount(count)
     }
 
-    // 随机生成食物清单
+    // 随机生成配料清单
     let randomFoodList = function () {
         const meatFoodsRandom = getRandomFoods(meatFoods, meatFoodsCount)
         setFoodList(foodList.concat(meatFoodsRandom))
@@ -64,19 +64,18 @@ const Random: NextPage = () => {
         const stapleFoodsRandom = getRandomFoods(stapleFoods, stapleFoodsCount)
         setFoodList(foodList.concat(stapleFoodsRandom))
 
-        console.log('生成的食物', foodList)
+        console.log('生成的配料表', foodList)
     }
 
-    // 保存食物清单
+    // 保存配料清单
     let saveFoodList = function () {
         localStorage.setItem("foodList", JSON.stringify(foodList))
-        console.log('保存的食物', foodList)
+        console.log('保存的配料表', foodList)
         alert("已保存")
         router.push("/cook")
     }
 
     const getRandomFoods = function (arr: Food[], count: number) {
-        debugger
         let shuffled = arr.slice(0), i = arr.length, min = i - count, temp, index;
         while (i-- > min) {
             index = Math.floor((i + 1) * Math.random());
@@ -150,7 +149,7 @@ const Random: NextPage = () => {
                     checked={ showFoodTagListFlag }
                     onChange={ () => setShowFoodTagListFlag(!showFoodTagListFlag) }
                 />
-                显示食物标签
+                显示配料标签
             </label>
 
             <div>这里展示随机生成的配料表</div>

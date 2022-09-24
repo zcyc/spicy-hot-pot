@@ -20,7 +20,7 @@ const Cook: NextPage = () => {
 
         <main className={ styles.main }>
             <h1 className={ styles.title }>
-                开始做菜
+                开煮
             </h1>
 
             <p className={ styles.description }>

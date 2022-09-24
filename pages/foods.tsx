@@ -6,31 +6,31 @@ import { useEffect, useState } from 'react'
 import Food from '../interfaces/food'
 
 const Foods: NextPage = () => {
-    // 黑名单食物列表
+    // 黑名单配料列表
     const [forbiddenFoodList, setForbiddenFoodList] = useState<Food[]>([])
     useEffect(() => {
         const forbiddenFoodList = JSON.parse(localStorage.getItem('forbiddenFoodListStr') || '[]') as Food[]
         setForbiddenFoodList(forbiddenFoodList)
     }, [])
 
-    // 可以使用的食物列表
+    // 可以使用的配料列表
     const [availableFoodList, setAvailableFoodList] = useState<Food[]>([])
     useEffect(() => {
-        console.log('默认食物', foods)
-        console.log('黑名单食物', forbiddenFoodList)
+        console.log('默认配料', foods)
+        console.log('黑名单配料', forbiddenFoodList)
         const availableFoodList = foods.filter(food => !forbiddenFoodList.some(forbiddenFood => forbiddenFood.name === food.name))
-        console.log('过滤后食物', availableFoodList)
+        console.log('过滤后配料', availableFoodList)
         setAvailableFoodList(availableFoodList)
     }, [forbiddenFoodList])
 
-    // 添加食物到黑名单
+    // 添加配料到黑名单
     const addForbiddenFood = (food: Food) => {
         const newForbiddenFoodList = [...forbiddenFoodList, food]
         setForbiddenFoodList(newForbiddenFoodList)
         localStorage.setItem('forbiddenFoodListStr', JSON.stringify(newForbiddenFoodList))
     }
 
-    // 从黑名单删除食物
+    // 从黑名单删除配料
     const removeForbiddenFood = (food: Food) => {
         const newForbiddenFoodList = forbiddenFoodList.filter(forbiddenFood => forbiddenFood.name !== food.name);
         setForbiddenFoodList(newForbiddenFoodList)
