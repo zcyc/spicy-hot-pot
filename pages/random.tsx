@@ -51,20 +51,15 @@ const Random: NextPage = () => {
     }
 
     // 随机生成配料清单
-    let randomFoodList = function () {
+    const randomFoodList = function () {
         const meatFoodsRandom = getRandomFoods(meatFoods, meatFoodsCount)
-        setFoodList(foodList.concat(meatFoodsRandom))
-
         const vegetableFoodsRandom = getRandomFoods(vegetableFoods, vegetableFoodsCount)
-        setFoodList(foodList.concat(vegetableFoodsRandom))
-
         const algaeFoodsRandom = getRandomFoods(algaeFoods, algaeFoodsCount)
-        setFoodList(foodList.concat(algaeFoodsRandom))
-
         const stapleFoodsRandom = getRandomFoods(stapleFoods, stapleFoodsCount)
-        setFoodList(foodList.concat(stapleFoodsRandom))
 
+        const foodList = ([] as Food[]).concat(meatFoodsRandom, vegetableFoodsRandom, algaeFoodsRandom, stapleFoodsRandom)
         console.log('生成的配料表', foodList)
+        setFoodList(foodList)
     }
 
     // 保存配料清单
