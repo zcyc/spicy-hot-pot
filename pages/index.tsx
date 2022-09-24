@@ -16,7 +16,7 @@ const Home: NextPage = () => {
             </h1>
 
             <p className={ styles.description }>
-                两种模式，随心所欲
+                两种模式，满足食欲
             </p>
 
             <div className={ styles.grid }>
