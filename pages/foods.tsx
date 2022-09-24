@@ -111,7 +111,7 @@ const Foods: NextPage = () => {
                                 onClick={ () => removeForbiddenFood(food) }
                                 style={ { width: "100%", padding: "0.8rem", } }
                             >
-                                不吃
+                                吃
                             </button>
                         </td>
                     </tr>
