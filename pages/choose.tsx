@@ -27,9 +27,9 @@ const Choose: NextPage = () => {
         setAvailableFoodList(availableFoodList)
     }, [forbiddenFoodList])
 
-    const [chooseFoodList, setChooseFoodList] = useState<string[]>([])
+    const [chooseFoodList, setChooseFoodList] = useState<Food[]>([])
 
-    const handleFoodChoose = (food: string) => {
+    const handleFoodChoose = (food: Food) => {
         if (chooseFoodList.includes(food)) {
             setChooseFoodList(chooseFoodList.filter(chooseFood => chooseFood !== food))
         } else {
@@ -40,7 +40,7 @@ const Choose: NextPage = () => {
     // 保存食物清单
     let saveFoodList = function () {
         localStorage.setItem("foodList", JSON.stringify(chooseFoodList))
-        console.log('过滤后食物', chooseFoodList)
+        console.log('选择的食物', chooseFoodList)
         alert("已保存")
         router.push("/cook")
     }
@@ -89,8 +89,8 @@ const Choose: NextPage = () => {
                             <label>
                                 <input
                                     type="checkbox"
-                                    checked={ chooseFoodList.includes(food.name) }
-                                    onChange={ () => handleFoodChoose(food.name) }
+                                    checked={ chooseFoodList.includes(food) }
+                                    onChange={ () => handleFoodChoose(food) }
                                 />
                                 { food.name }
                                 { showFoodTagListFlag && <ul>
@@ -111,8 +111,8 @@ const Choose: NextPage = () => {
                             <label>
                                 <input
                                     type="checkbox"
-                                    checked={ chooseFoodList.includes(food.name) }
-                                    onChange={ () => handleFoodChoose(food.name) }
+                                    checked={ chooseFoodList.includes(food) }
+                                    onChange={ () => handleFoodChoose(food) }
                                 />
                                 { food.name }
                                 { showFoodTagListFlag && <ul>
@@ -133,8 +133,8 @@ const Choose: NextPage = () => {
                             <label>
                                 <input
                                     type="checkbox"
-                                    checked={ chooseFoodList.includes(food.name) }
-                                    onChange={ () => handleFoodChoose(food.name) }
+                                    checked={ chooseFoodList.includes(food) }
+                                    onChange={ () => handleFoodChoose(food) }
                                 />
                                 { food.name }
                                 { showFoodTagListFlag && <ul>
@@ -155,8 +155,8 @@ const Choose: NextPage = () => {
                             <label>
                                 <input
                                     type="checkbox"
-                                    checked={ chooseFoodList.includes(food.name) }
-                                    onChange={ () => handleFoodChoose(food.name) }
+                                    checked={ chooseFoodList.includes(food) }
+                                    onChange={ () => handleFoodChoose(food) }
                                 />
                                 { food.name }
                                 { showFoodTagListFlag && <ul>
