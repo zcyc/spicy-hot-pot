@@ -1,8 +1,17 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
+import { useEffect, useState } from "react";
+import Food from "../interfaces/food";
 
-const Do: NextPage = () => {
+const Cook: NextPage = () => {
+    const [foodList, setFoodList] = useState<Food[]>([])
+
+    useEffect(() => {
+        const foodList = JSON.parse(localStorage.getItem('foodList') || '[]') as Food[]
+        setFoodList(foodList)
+    }, [])
+
     return (<div className={ styles.container }>
         <Head>
             <title>麻辣烫配料清单生成器</title>
@@ -15,9 +24,16 @@ const Do: NextPage = () => {
             </h1>
 
             <p className={ styles.description }>
-                根据提示，按照配料的耐熟程度，分批下入配料
+                请前往菜市或超市购买配料，然后根据耐熟程度，分批下入配料
             </p>
 
+            <ul>
+                {
+                    foodList.map((food: Food, index: number) => (
+                        <li key={ index }>{ food.name }</li>
+                    ))
+                }
+            </ul>
         </main>
 
         <footer className={ styles.footer }>
@@ -36,4 +52,4 @@ const Do: NextPage = () => {
     </div>)
 }
 
-export default Do
+export default Cook
