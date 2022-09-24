@@ -4,6 +4,7 @@ import styles from '../styles/Home.module.css'
 import foods from "../public/data/foods.json";
 import { useEffect, useState } from "react";
 import Food from "../interfaces/food";
+import { router } from "next/client";
 
 const Choose: NextPage = () => {
     // 是否展示食物标签
@@ -35,6 +36,15 @@ const Choose: NextPage = () => {
             setChooseFoodList([...chooseFoodList, food])
         }
     }
+
+    // 保存食物清单
+    let saveFoodList = function () {
+        localStorage.setItem("foodList", JSON.stringify(chooseFoodList))
+        console.log('过滤后食物', chooseFoodList)
+        alert("已保存")
+        router.push("/cook")
+    }
+
     // 荤菜
     let meatFoods = availableFoodList.filter(item => item.category === "荤菜")
     console.log("荤菜", meatFoods)
@@ -162,7 +172,7 @@ const Choose: NextPage = () => {
 
             <div>
                 <p style={ { textAlign: "center" } }>已选择 { chooseFoodList.length } 种配料</p>
-                <button style={ { fontSize: "xx-large" } }>生成配料表</button>
+                <button style={ { fontSize: "xx-large" } } onClick={ saveFoodList }>保存配料表</button>
             </div>
         </main>
 

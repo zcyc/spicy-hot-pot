@@ -45,7 +45,7 @@ const Home: NextPage = () => {
                     </Link>
                 </div>
                 <div className={ styles.card }>
-                    <Link href="/do">
+                    <Link href="/cook">
                         <a>
                             <h2>开始烹饪 &rarr;</h2>
                             <p>根据提示分批下入配料，保证煮熟的同时保证口感</p>
