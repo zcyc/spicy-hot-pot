@@ -50,12 +50,41 @@ const Random: NextPage = () => {
         setStapleFoodsCount(count)
     }
 
+    // 随机生成食物清单
+    let randomFoodList = function () {
+        const meatFoodsRandom = getRandomFoods(meatFoods, meatFoodsCount)
+        setFoodList(foodList.concat(meatFoodsRandom))
+
+        const vegetableFoodsRandom = getRandomFoods(vegetableFoods, vegetableFoodsCount)
+        setFoodList(foodList.concat(vegetableFoodsRandom))
+
+        const algaeFoodsRandom = getRandomFoods(algaeFoods, algaeFoodsCount)
+        setFoodList(foodList.concat(algaeFoodsRandom))
+
+        const stapleFoodsRandom = getRandomFoods(stapleFoods, stapleFoodsCount)
+        setFoodList(foodList.concat(stapleFoodsRandom))
+
+        console.log('生成的食物', foodList)
+    }
+
     // 保存食物清单
     let saveFoodList = function () {
-        localStorage.setItem("foodList", JSON.stringify(chooseFoodList))
-        console.log('选择的食物', chooseFoodList)
+        localStorage.setItem("foodList", JSON.stringify(foodList))
+        console.log('保存的食物', foodList)
         alert("已保存")
         router.push("/cook")
+    }
+
+    const getRandomFoods = function (arr: Food[], count: number) {
+        debugger
+        let shuffled = arr.slice(0), i = arr.length, min = i - count, temp, index;
+        while (i-- > min) {
+            index = Math.floor((i + 1) * Math.random());
+            temp = shuffled[index];
+            shuffled[index] = shuffled[i];
+            shuffled[i] = temp;
+        }
+        return shuffled.slice(min);
     }
 
     // 荤菜
@@ -75,7 +104,7 @@ const Random: NextPage = () => {
     console.log("主食", stapleFoods)
 
     // 选定的配料
-    const [chooseFoodList, setChooseFoodList] = useState<Food[]>([])
+    const [foodList, setFoodList] = useState<Food[]>([])
 
     return (<div className={ styles.container }>
         <Head>
@@ -112,7 +141,7 @@ const Random: NextPage = () => {
             </div>
 
             <div>
-                <button style={ { fontSize: "xx-large" } } onClick={ saveFoodList }>生成配料表</button>
+                <button style={ { fontSize: "xx-large" } } onClick={ randomFoodList }>生成配料表</button>
             </div>
 
             <label>
@@ -130,7 +159,7 @@ const Random: NextPage = () => {
             {/*</ul>*/ }
 
             <div>
-                <p style={ { textAlign: "center" } }>已选择 { chooseFoodList.length } 种配料</p>
+                <p style={ { textAlign: "center" } }>已选择 { foodList.length } 种配料</p>
                 <button style={ { fontSize: "xx-large" } } onClick={ saveFoodList }>保存配料表</button>
             </div>
         </main>
