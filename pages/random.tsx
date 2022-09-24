@@ -118,6 +118,15 @@ const Random: NextPage = () => {
 
             <p>自动生成一份荤素搭配带有主食的配料表</p>
 
+            <label>
+                <input
+                    type="checkbox"
+                    checked={ showFoodTagListFlag }
+                    onChange={ () => setShowFoodTagListFlag(!showFoodTagListFlag) }
+                />
+                显示配料标签
+            </label>
+
             <div style={ { display: "flex", alignItems: "baseline" } }>
                 荤菜数量：<input type="number"
                                 value={ meatFoodsCount }
@@ -143,22 +152,26 @@ const Random: NextPage = () => {
                 <button style={ { fontSize: "xx-large" } } onClick={ randomFoodList }>生成配料表</button>
             </div>
 
-            <label>
-                <input
-                    type="checkbox"
-                    checked={ showFoodTagListFlag }
-                    onChange={ () => setShowFoodTagListFlag(!showFoodTagListFlag) }
-                />
-                显示配料标签
-            </label>
-
-            <div>这里展示随机生成的配料表</div>
-            {/*<ul>*/ }
-
-            {/*</ul>*/ }
+            <details className={ styles.details }>
+                <summary className={ styles.summary }>生成的配料表</summary>
+                <ul>
+                    { foodList.map((food, index) => (
+                        <li key={ index }>
+                            <label>
+                                { food.name }
+                                { showFoodTagListFlag && <ul>
+                                    { food.tagList.map(tag => (
+                                        <li key={ tag }>{ tag }</li>
+                                    )) }
+                                </ul> }
+                            </label>
+                        </li>
+                    )) }
+                </ul>
+            </details>
 
             <div>
-                <p style={ { textAlign: "center" } }>已选择 { foodList.length } 种配料</p>
+                <p style={ { textAlign: "center" } }>已生成 { foodList.length } 种配料</p>
                 <button style={ { fontSize: "xx-large" } } onClick={ saveFoodList }>保存配料表</button>
             </div>
         </main>
