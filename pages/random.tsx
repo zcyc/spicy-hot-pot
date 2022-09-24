@@ -4,9 +4,10 @@ import styles from '../styles/Home.module.css'
 import { useEffect, useState } from 'react'
 import foods from '../public/data/foods.json'
 import Food from "../interfaces/food";
-import { router } from "next/client";
+import {useRouter} from "next/router";
 
 const Random: NextPage = () => {
+    const router = useRouter();
     const [showFoodTagListFlag, setShowFoodTagListFlag] = useState<boolean>(false)
 
     // 黑名单配料

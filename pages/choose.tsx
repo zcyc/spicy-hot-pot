@@ -4,9 +4,11 @@ import styles from '../styles/Home.module.css'
 import foods from "../public/data/foods.json";
 import { useEffect, useState } from "react";
 import Food from "../interfaces/food";
-import { router } from "next/client";
+import { useRouter } from "next/router";
 
 const Choose: NextPage = () => {
+    const router = useRouter();
+
     // 是否展示配料标签
     const [showFoodTagListFlag, setShowFoodTagListFlag] = useState<boolean>(false)
 
